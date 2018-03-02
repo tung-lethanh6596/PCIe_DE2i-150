@@ -1,0 +1,34 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst pcie_core_mem.PCIe_hard_ip.avalon_reset -pg 1
+preplace inst pcie_core_mem.PCIe_hard_ip.test_in_conduit -pg 1
+preplace inst pcie_core_mem.PCIe_hard_ip.cal_blk_clk -pg 1
+preplace inst pcie_core_mem.RamSrc -pg 1 -lvl 2 -y 520
+preplace inst pcie_core_mem.PCIe_hard_ip.avalon_clk -pg 1
+preplace inst pcie_core_mem.PCIe_hard_ip -pg 1 -lvl 1 -y 130
+preplace inst pcie_core_mem.OrAtom -pg 1 -lvl 2 -y 40
+preplace inst pcie_core_mem.PCIe_hard_ip.pipe_interface_internal -pg 1
+preplace inst pcie_core_mem.PCIe_hard_ip.altgx_internal -pg 1
+preplace inst pcie_core_mem.PCIe_hard_ip.pcie_internal_hip -pg 1
+preplace inst pcie_core_mem.RamDes -pg 1 -lvl 2 -y 260
+preplace inst pcie_core_mem.PCIe_hard_ip.refclk_conduit -pg 1
+preplace inst pcie_core_mem.PCIe_hard_ip.pcie_rstn_conduit -pg 1
+preplace inst pcie_core_mem.PCIe_hard_ip.reset_controller_internal -pg 1
+preplace inst pcie_core_mem -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc POINT_TO_POINT<net_container>pcie_core_mem</net_container>(SLAVE)RamDes.we,(SLAVE)OrAtom.we) 1 1 1 680
+preplace netloc POINT_TO_POINT<net_container>pcie_core_mem</net_container>(SLAVE)OrAtom.rd_addr,(SLAVE)RamSrc.rd_addr) 1 1 1 640
+preplace netloc EXPORT<net_container>pcie_core_mem</net_container>(SLAVE)pcie_core_mem.pcie_hard_ip_0_rx_in,(SLAVE)PCIe_hard_ip.rx_in) 1 0 1 NJ
+preplace netloc EXPORT<net_container>pcie_core_mem</net_container>(SLAVE)PCIe_hard_ip.refclk,(SLAVE)pcie_core_mem.pcie_hard_ip_0_refclk) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>pcie_core_mem</net_container>(SLAVE)OrAtom.rd_data,(SLAVE)RamSrc.rd_data) 1 1 1 660
+preplace netloc POINT_TO_POINT<net_container>pcie_core_mem</net_container>(SLAVE)OrAtom.wr_addr,(SLAVE)RamDes.wr_addr) 1 1 1 700
+preplace netloc EXPORT<net_container>pcie_core_mem</net_container>(SLAVE)PCIe_hard_ip.pcie_rstn,(SLAVE)pcie_core_mem.pcie_hard_ip_0_pcie_rstn) 1 0 1 NJ
+preplace netloc EXPORT<net_container>pcie_core_mem</net_container>(SLAVE)OrAtom.done,(SLAVE)pcie_core_mem.oratom_done) 1 0 2 NJ 50 NJ
+preplace netloc FAN_OUT<net_container>pcie_core_mem</net_container>(SLAVE)OrAtom.clock,(SLAVE)RamDes.clock,(SLAVE)PCIe_hard_ip.cal_blk_clk,(MASTER)PCIe_hard_ip.pcie_core_clk,(SLAVE)PCIe_hard_ip.reconfig_gxbclk,(SLAVE)PCIe_hard_ip.fixedclk,(SLAVE)RamSrc.clock) 1 0 2 190 30 580
+preplace netloc EXPORT<net_container>pcie_core_mem</net_container>(SLAVE)pcie_core_mem.oratom_en,(SLAVE)OrAtom.en) 1 0 2 NJ 70 NJ
+preplace netloc POINT_TO_POINT<net_container>pcie_core_mem</net_container>(SLAVE)RamSrc.oe,(SLAVE)OrAtom.oe) 1 1 1 620
+preplace netloc FAN_OUT<net_container>pcie_core_mem</net_container>(SLAVE)PCIe_hard_ip.cra,(SLAVE)RamSrc.s1,(SLAVE)RamDes.s1,(MASTER)PCIe_hard_ip.bar0,(SLAVE)PCIe_hard_ip.txs) 1 0 2 210 90 520
+preplace netloc EXPORT<net_container>pcie_core_mem</net_container>(SLAVE)PCIe_hard_ip.tx_out,(SLAVE)pcie_core_mem.pcie_hard_ip_0_tx_out) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>pcie_core_mem</net_container>(SLAVE)RamSrc.reset,(SLAVE)RamDes.reset,(MASTER)PCIe_hard_ip.pcie_core_reset) 1 1 1 600
+preplace netloc POINT_TO_POINT<net_container>pcie_core_mem</net_container>(SLAVE)RamDes.wr_data,(SLAVE)OrAtom.wr_data) 1 1 1 720
+levelinfo -pg 1 0 160 860
+levelinfo -hier pcie_core_mem 170 340 770 850
